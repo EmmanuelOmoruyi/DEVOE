@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVOE</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h1 class="logo">DEVOE</h1>
+        <p class="tagline">The Thinking Engine</p>
+
+        <input type="file" id="fileInput" hidden>
+
+        <label for="fileInput" class="upload-btn">
+            Upload File
+        </label>
+
+        <button id="uploadBtn">Process File</button>
+        <button id="sendBtn">➤</button>
+
+    </div>
+
+    <!-- CHAT -->
+    <div class="chat-section">
+
+        <div id="response" class="chat-box">
+
+            <div class="welcome">
+                <h2>DEVOE ONLINE</h2>
+                <p>Upload a file and begin analysis.</p>
+            </div>
+
+        </div>
+
+        <div class="input-area">
+            <input id="question" type="text" placeholder="Ask DEVOE something...">
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
