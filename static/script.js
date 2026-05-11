@@ -23,11 +23,13 @@ function addMessage(sender, text) {
 // =========================
 // UPLOAD FILE
 // =========================
+
 async function uploadFile() {
 
     const fileInput = document.getElementById("fileInput");
 
     if (!fileInput.files.length) {
+
         alert("Select a file first");
         return;
     }
@@ -35,6 +37,7 @@ async function uploadFile() {
     const file = fileInput.files[0];
 
     const formData = new FormData();
+
     formData.append("file", file);
 
     try {
@@ -48,11 +51,35 @@ async function uploadFile() {
 
         const data = await res.json();
 
-        addMessage("bot", `File processed. Chunks: ${data.chunks_created}`);
+        console.log(data);
+
+        // SUCCESS
+        if (data.chunks_created !== undefined) {
+
+            addMessage(
+                "bot",
+                `File processed successfully. Chunks created: ${data.chunks_created}`
+            );
+
+        }
+
+        // ERROR MESSAGE
+        else {
+
+            addMessage(
+                "bot",
+                data.message || "Upload failed"
+            );
+        }
 
     } catch (err) {
+
         console.error(err);
-        addMessage("bot", "Upload failed");
+
+        addMessage(
+            "bot",
+            "Error uploading file."
+        );
     }
 }
 
