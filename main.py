@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
+from pypdf import PdfReader
+import io
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
@@ -213,23 +214,75 @@ async def upload(file: UploadFile = File(...)):
     print("UPLOAD HIT")
     print("FILENAME:", file.filename)
 
-    if not file.filename.endswith(".txt"):
-
-        return {
-            "message": "Only TXT files allowed."
-        }
+    filename = file.filename.lower()
 
     contents = await file.read()
 
-    try:
+    text = ""
 
-        text = contents.decode("utf-8")
+    # =========================
+    # TXT SUPPORT
+    # =========================
 
-    except:
+    if filename.endswith(".txt"):
+
+        try:
+            text = contents.decode("utf-8")
+
+        except:
+
+            return {
+                "message": "Could not decode TXT file."
+            }
+
+    # =========================
+    # PDF SUPPORT
+    # =========================
+
+    elif filename.endswith(".pdf"):
+
+        try:
+
+            pdf = PdfReader(io.BytesIO(contents))
+
+            for page in pdf.pages:
+
+                extracted = page.extract_text()
+
+                if extracted:
+                    text += extracted + "\n"
+
+        except Exception as e:
+
+            print("PDF ERROR:", e)
+
+            return {
+                "message": "Could not read PDF file."
+            }
+
+    # =========================
+    # INVALID FILE
+    # =========================
+
+    else:
 
         return {
-            "message": "Could not decode TXT file."
+            "message": "Only TXT and PDF files are allowed."
         }
+
+    # =========================
+    # EMPTY CHECK
+    # =========================
+
+    if not text.strip():
+
+        return {
+            "message": "No readable text found in file."
+        }
+
+    # =========================
+    # CREATE CHUNKS
+    # =========================
 
     chunks = create_chunks(text)
 
