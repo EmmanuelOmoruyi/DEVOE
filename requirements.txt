@@ -4,4 +4,4 @@ jinja2
 python-multipart
 sentence-transformers
 pypdf
-torch
+torch --index-url https://download.pytorch.org/whl/cpu
