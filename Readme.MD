@@ -1,3 +1,24 @@
+---
+title: DEVOE
+emoji: 🤖
+colorFrom: blue
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
+# DEVOE
+
+A futuristic Retrieval-Augmented Generation (RAG) AI system built with FastAPI, Sentence Transformers, and a cyberpunk-inspired interface.
+
+Supports:
+- TXT files
+- PDF files
+- Semantic search
+- Context retrieval
+- Sci-fi UI
+
+
 DEVOE — Local RAG Document Assistant
 
 DEVOE is a futuristic Retrieval-Augmented Generation (RAG) web application built with FastAPI, JavaScript, and Sentence Transformers.
