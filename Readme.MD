@@ -9,162 +9,204 @@ pinned: false
 
 # DEVOE
 
-A futuristic Retrieval-Augmented Generation (RAG) AI system built with FastAPI, Sentence Transformers, and a cyberpunk-inspired interface.
+A futuristic Retrieval-Augmented Generation (RAG) system built with FastAPI, Sentence Transformers, and a cyberpunk-inspired interface.
 
-Supports:
-- TXT files
-- PDF files
+DEVOE allows users to upload TXT and PDF documents, convert them into semantic embeddings, and retrieve relevant context using natural language questions.
+
+---
+
+## Features
+
+- TXT file support
+- PDF file support
 - Semantic search
-- Context retrieval
-- Sci-fi UI
+- Cosine similarity retrieval
+- FastAPI backend
+- Cyberpunk / futuristic interface
+- Fully local AI pipeline
+- No external APIs required
+- Context-aware retrieval
 
+---
 
-DEVOE — Local RAG Document Assistant
+## Demo Video
 
-DEVOE is a futuristic Retrieval-Augmented Generation (RAG) web application built with FastAPI, JavaScript, and Sentence Transformers.
+Click below to watch DEVOE in action:
 
-It allows users to:
+🎥 [Watch Demo Video](./videos/devoe_screen_record.mp4)
 
-Upload .txt documents
-Convert documents into semantic chunks
-Search document meaning using vector embeddings
-Retrieve the most relevant context for a question
-Interact through a futuristic cyberpunk UI
-Features
-Semantic document search
-Vector similarity retrieval
-FastAPI backend
-Beautiful sci-fi/cyberpunk interface
-Real-time chat UI
-File upload system
-Local embedding generation using Sentence Transformers
-No paid API required
-Tech Stack
-Backend
-Python
-FastAPI
-Sentence Transformers
-Uvicorn
-Frontend
-HTML
-CSS
-JavaScript
-AI / NLP
-all-MiniLM-L6-v2 embedding model
-Project Structure
+---
+
+## Screenshots
+
+### Main Interface
+
+[PLACE SCREENSHOT HERE]
+
+### Retrieval Example
+
+[PLACE SCREENSHOT HERE]
+
+---
+
+## How It Works
+
+DEVOE follows a Retrieval-Augmented Generation workflow:
+
+1. User uploads TXT or PDF documents  
+2. Text is extracted from the document  
+3. Text is split into chunks  
+4. Sentence embeddings are generated  
+5. User asks a question  
+6. Query embeddings are generated  
+7. Cosine similarity retrieves relevant chunks  
+8. Most relevant context is returned
+
+---
+
+## Tech Stack
+
+### Backend
+
+- Python
+- FastAPI
+- Sentence Transformers
+- PyPDF
+- Uvicorn
+
+### Frontend
+
+- HTML
+- CSS
+- JavaScript
+
+### AI/NLP
+
+- all-MiniLM-L6-v2
+- Semantic embeddings
+- Cosine similarity retrieval
+
+---
+
+## Installation
+
+Clone repository:
+
+```bash
+git clone https://github.com/EmmanuelOmoruyi/DEVOE.git
+```
+
+Enter directory:
+
+```bash
+cd DEVOE
+```
+
+Install requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run:
+
+```bash
+uvicorn main:app --reload
+```
+
+Open browser:
+
+```bash
+http://127.0.0.1:8000
+```
+
+---
+
+## Project Structure
+
+```bash
 DEVOE/
 │
 ├── main.py
-│
-├── templates/
-│   └── index.html
+├── requirements.txt
+├── videos/
+│   └── devoe_screen_record.mp4
 │
 ├── static/
 │   ├── style.css
 │   └── script.js
 │
+├── templates/
+│   └── index.html
+│
 └── README.md
-Installation
-1. Clone Repository
-git clone https://github.com/YOUR_USERNAME/DEVOE.git
-cd DEVOE
-2. Create Virtual Environment
-Windows
-python -m venv venv
-venv\Scripts\activate
-Linux / Mac
-python3 -m venv venv
-source venv/bin/activate
-3. Install Dependencies
-pip install fastapi uvicorn sentence-transformers python-multipart jinja2
-Running DEVOE
+```
 
-Start the server:
+---
 
-uvicorn main:app --reload
+## Example Workflow
 
-Open browser:
+### Upload
 
-http://127.0.0.1:8000
-How DEVOE Works
-Step 1 — Upload Document
+Upload TXT or PDF files
 
-DEVOE accepts .txt files.
+### Ask
 
-The document is:
-
-read
-split into chunks
-converted into vector embeddings
-Step 2 — Ask Questions
-
-User questions are converted into embeddings.
-
-DEVOE compares:
-
-question vector
-against
-document chunk vectors
-
-using cosine similarity.
-
-Step 3 — Retrieval
-
-The most relevant chunks are returned as contextual answers.
-
-Current Limitations
-
-DEVOE currently performs:
-
-semantic retrieval
-contextual matching
-
-but does NOT yet use an LLM for full answer generation.
-
-This means:
-
-answers are retrieved from document context
-not fully AI-generated summaries
-
-Future versions may integrate:
-
-OpenAI
-Ollama
-Local LLMs
-Streaming responses
-Multi-document memory
-PDF/DOCX support
-Example
-Uploaded Text
-Batman is Bruce Wayne.
-Superman is Clark Kent.
-User Question
 Who is Batman?
+
+### Response
+
 DEVOE Response
+
+Question:
+Who is Batman?
+
+Most Relevant Context:
 Batman is Bruce Wayne.
-Future Roadmap
-PDF support
-DOCX support
-Excel support
-Ollama integration
-OpenAI integration
-Conversation memory
-Vector database support
-Multi-file retrieval
-Better ranking algorithms
-Streaming AI responses
-UI Design
 
-DEVOE uses a custom futuristic interface featuring:
+---
 
-neon glow effects
-glassmorphism
-cyberpunk aesthetics
-animated borders
-sci-fi inspired layout
-Author
+## Deployment Status
 
-Built by Emmanuel Omoruyi
+DEVOE currently runs locally.
 
-Project Name:
-DEVOE — The Thinking Engine
+During deployment testing, multiple free cloud platforms were attempted. However, the embedding pipeline exceeded available free-tier memory limits due to PyTorch and Sentence Transformers requirements.
+
+Rather than removing core retrieval functionality or replacing it with lower-quality alternatives, the project remains fully functional as a local deployment.
+
+Future deployment goals:
+
+- optimized inference pipeline
+- lighter embedding models
+- vector database integration
+- optional LLM integration
+- upgraded cloud infrastructure
+
+---
+
+## Future Improvements
+
+- Persistent vector storage
+- Chat memory
+- Multi-document retrieval
+- Better ranking system
+- LLM-generated answers
+- Authentication
+- Docker deployment
+- Streaming responses
+
+---
+
+## Author
+
+Emmanuel Omoruyi
+
+GitHub:
+
+https://github.com/EmmanuelOmoruyi
+
+---
+
+## License
+
+MIT License
